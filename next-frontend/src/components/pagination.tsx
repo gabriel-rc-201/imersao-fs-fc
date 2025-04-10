@@ -1,20 +1,24 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange?: (page: number) => void
+  currentPage: number;
+  totalPages: number;
+  onPageChange?: (page: number) => void;
 }
 
-export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) {
   const handlePageChange = (page: number) => {
     if (onPageChange) {
-      onPageChange(page)
+      onPageChange(page);
     }
-  }
+  };
 
   return (
     <div className="flex items-center space-x-2">
@@ -56,5 +60,5 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
         <span className="sr-only">Próxima página</span>
       </Button>
     </div>
-  )
+  );
 }

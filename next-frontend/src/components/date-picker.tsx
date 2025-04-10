@@ -1,29 +1,37 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
-import { ptBR } from "date-fns/locale"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { useState } from "react";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface DatePickerProps {
-  placeholder?: string
-  value?: Date
-  onChange?: (date: Date | undefined) => void
+  placeholder?: string;
+  value?: Date;
+  onChange?: (date: Date | undefined) => void;
 }
 
-export function DatePicker({ placeholder = "Selecione uma data", value, onChange }: DatePickerProps) {
-  const [date, setDate] = useState<Date | undefined>(value)
+export function DatePicker({
+  placeholder = "Selecione uma data",
+  value,
+  onChange,
+}: DatePickerProps) {
+  const [date, setDate] = useState<Date | undefined>(value);
 
   const handleSelect = (selectedDate: Date | undefined) => {
-    setDate(selectedDate)
+    setDate(selectedDate);
     if (onChange) {
-      onChange(selectedDate)
+      onChange(selectedDate);
     }
-  }
+  };
 
   return (
     <Popover>
@@ -50,5 +58,5 @@ export function DatePicker({ placeholder = "Selecione uma data", value, onChange
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }

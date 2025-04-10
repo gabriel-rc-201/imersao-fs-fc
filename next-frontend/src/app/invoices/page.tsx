@@ -1,13 +1,32 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Eye, Download, Plus } from "lucide-react"
-import { Pagination } from "@/components/pagination"
-import { StatusBadge } from "@/components/status-badge"
-import { DatePicker } from "@/components/date-picker"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Eye, Download, Plus } from "lucide-react";
+import { Pagination } from "@/components/pagination";
+import { StatusBadge } from "@/components/status-badge";
+import { DatePicker } from "@/components/date-picker";
 
 // Dados simulados para a tabela
 const invoices = [
@@ -32,7 +51,7 @@ const invoices = [
     value: "R$ 99,90",
     status: "rejeitado",
   },
-]
+];
 
 export default function InvoiceListPage() {
   return (
@@ -40,7 +59,9 @@ export default function InvoiceListPage() {
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle className="text-2xl font-bold text-white">Faturas</CardTitle>
+            <CardTitle className="text-2xl font-bold text-white">
+              Faturas
+            </CardTitle>
             <CardDescription className="text-slate-400">
               Gerencie suas faturas e acompanhe os pagamentos
             </CardDescription>
@@ -54,7 +75,9 @@ export default function InvoiceListPage() {
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-slate-700/30 rounded-lg">
               <div>
-                <label className="text-sm font-medium text-slate-300 mb-1 block">Status</label>
+                <label className="text-sm font-medium text-slate-300 mb-1 block">
+                  Status
+                </label>
                 <Select defaultValue="todos">
                   <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
                     <SelectValue placeholder="Todos" />
@@ -68,16 +91,25 @@ export default function InvoiceListPage() {
                 </Select>
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-300 mb-1 block">Data Inicial</label>
+                <label className="text-sm font-medium text-slate-300 mb-1 block">
+                  Data Inicial
+                </label>
                 <DatePicker placeholder="dd/mm/aaaa" />
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-300 mb-1 block">Data Final</label>
+                <label className="text-sm font-medium text-slate-300 mb-1 block">
+                  Data Final
+                </label>
                 <DatePicker placeholder="dd/mm/aaaa" />
               </div>
               <div>
-                <label className="text-sm font-medium text-slate-300 mb-1 block">Buscar</label>
-                <Input placeholder="ID ou descrição" className="bg-slate-700 border-slate-600 text-white" />
+                <label className="text-sm font-medium text-slate-300 mb-1 block">
+                  Buscar
+                </label>
+                <Input
+                  placeholder="ID ou descrição"
+                  className="bg-slate-700 border-slate-600 text-white"
+                />
               </div>
             </div>
 
@@ -94,11 +126,22 @@ export default function InvoiceListPage() {
               </TableHeader>
               <TableBody>
                 {invoices.map((invoice) => (
-                  <TableRow key={invoice.id} className="border-slate-700 hover:bg-slate-700/50">
-                    <TableCell className="font-medium text-white">{invoice.id}</TableCell>
-                    <TableCell className="text-slate-300">{invoice.date}</TableCell>
-                    <TableCell className="text-slate-300">{invoice.description}</TableCell>
-                    <TableCell className="text-slate-300">{invoice.value}</TableCell>
+                  <TableRow
+                    key={invoice.id}
+                    className="border-slate-700 hover:bg-slate-700/50"
+                  >
+                    <TableCell className="font-medium text-white">
+                      {invoice.id}
+                    </TableCell>
+                    <TableCell className="text-slate-300">
+                      {invoice.date}
+                    </TableCell>
+                    <TableCell className="text-slate-300">
+                      {invoice.description}
+                    </TableCell>
+                    <TableCell className="text-slate-300">
+                      {invoice.value}
+                    </TableCell>
                     <TableCell>
                       <StatusBadge status={invoice.status} />
                     </TableCell>
@@ -130,12 +173,14 @@ export default function InvoiceListPage() {
             </Table>
 
             <div className="flex items-center justify-between">
-              <p className="text-sm text-slate-400">Mostrando 1 - 3 de 50 resultados</p>
+              <p className="text-sm text-slate-400">
+                Mostrando 1 - 3 de 50 resultados
+              </p>
               <Pagination currentPage={1} totalPages={3} />
             </div>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
