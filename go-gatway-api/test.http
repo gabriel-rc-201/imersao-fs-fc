@@ -1,0 +1,56 @@
+@baseUrl = http://localhost:8080
+@apiKey = {{createAccount.response.body.api_key}}
+
+### Criar uma nova conta
+# @name createAccount
+POST {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@doew.com"
+}
+
+### Obter dados da conta
+GET {{baseUrl}}/accounts
+X-API-KEY: {{apiKey}}
+
+
+### Criar uma nova fatura
+# @name createInvoice
+POST {{baseUrl}}/invoice
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+    "amount": 1000,
+    "description": "Compra no supermercado",
+    "payment_type": "credit_card",
+    "card_number": "1234567890123456",
+    "cvv": "123",
+    "expiration_month": 12,
+    "expiration_year": 2025,
+    "cardholder_name": "John Doe"
+}
+
+### Obter uma fatura específica
+@invoiceId = {{createInvoice.response.body.id}}
+GET {{baseUrl}}/invoice/{{invoiceId}}
+X-API-KEY: {{apiKey}}
+
+### Criar uma nova fatura com valor alto( > 1000000)
+# @name createInvoice
+POST {{baseUrl}}/invoice
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+    "amount": 1000000,
+    "description": "Compra no supermercado",
+    "payment_type": "credit_card",
+    "card_number": "1234567890123456",
+    "cvv": "123",
+    "expiration_month": 12,
+    "expiration_year": 2025,
+    "cardholder_name": "John Doe"
+}
