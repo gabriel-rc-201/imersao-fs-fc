@@ -66,7 +66,7 @@ export default function InvoiceListPage() {
               Gerencie suas faturas e acompanhe os pagamentos
             </CardDescription>
           </div>
-          <Button className="bg-indigo-600 hover:bg-indigo-700">
+          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
             <Plus className="h-4 w-4 mr-2" />
             Nova Fatura
           </Button>
