@@ -29,6 +29,7 @@ import { StatusBadge } from "@/components/status-badge";
 // import { DatePicker } from "@/components/date-picker";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { IInvoice } from "./types/invoice";
 
 export const getInvoices = async () => {
   const cookiesStore = await cookies();
@@ -43,20 +44,8 @@ export const getInvoices = async () => {
   return response.json();
 };
 
-interface IInvoice {
-  id: string;
-  account_id: string;
-  amount: number;
-  status: string;
-  description: string;
-  card_last_digits: string;
-  created_at: Date;
-  updated_at: Date;
-}
-
 export default async function InvoiceListPage() {
   const invoices: IInvoice[] = await getInvoices();
-  console.log(invoices);
 
   return (
     <div className="container mx-auto py-8 px-4">
