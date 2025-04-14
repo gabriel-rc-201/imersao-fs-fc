@@ -39,6 +39,10 @@ export const getInvoices = async () => {
     headers: {
       "X-API-KEY": apiKey,
     },
+    cache: "force-cache",
+    next: {
+      tags: [`accounts/${apiKey}/invoices`],
+    },
   });
 
   return response.json();

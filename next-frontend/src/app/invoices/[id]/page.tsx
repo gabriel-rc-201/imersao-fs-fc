@@ -14,6 +14,10 @@ export const getInvoice = async (id: string) => {
     headers: {
       "X-API-KEY": apiKey,
     },
+    cache: "force-cache",
+    next: {
+      tags: [`accounts/${apiKey}/invoices/${id}`],
+    },
   });
 
   if (!response.ok) {
