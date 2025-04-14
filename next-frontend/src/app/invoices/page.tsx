@@ -27,6 +27,7 @@ import { Eye, Download, Plus } from "lucide-react";
 import { Pagination } from "@/components/pagination";
 import { StatusBadge } from "@/components/status-badge";
 import { DatePicker } from "@/components/date-picker";
+import { redirect } from "next/navigation";
 
 // Dados simulados para a tabela
 const invoices = [
@@ -66,7 +67,13 @@ export default function InvoiceListPage() {
               Gerencie suas faturas e acompanhe os pagamentos
             </CardDescription>
           </div>
-          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+          <Button
+            onClick={async () => {
+              "use server";
+              redirect("/invoices/create");
+            }}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Nova Fatura
           </Button>

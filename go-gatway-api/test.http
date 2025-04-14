@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8080
-@apiKey = {{createAccount.response.body.api_key}}
+@apiKey = a8736b3344d7c9b38a42161efb121a03
 
 ### Criar uma nova conta
 # @name createAccount
