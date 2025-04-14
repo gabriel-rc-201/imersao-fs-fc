@@ -7,17 +7,17 @@ interface StatusBadgeProps {
 export function StatusBadge({ status }: StatusBadgeProps) {
   const getStatusConfig = () => {
     switch (status.toLowerCase()) {
-      case "aprovado":
+      case "approved":
         return {
           label: "Aprovado",
           className: "bg-green-100 text-green-800 border-green-200",
         };
-      case "pendente":
+      case "pending":
         return {
           label: "Pendente",
           className: "bg-yellow-100 text-yellow-800 border-yellow-200",
         };
-      case "rejeitado":
+      case "rejected":
         return {
           label: "Rejeitado",
           className: "bg-red-100 text-red-800 border-red-200",
@@ -36,7 +36,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     <span
       className={cn(
         "px-2.5 py-0.5 rounded-full text-xs font-medium border",
-        config.className,
+        config.className
       )}
     >
       {config.label}

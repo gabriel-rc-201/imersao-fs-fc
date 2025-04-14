@@ -7,14 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import { Input } from "@/components/ui/input";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -26,35 +26,38 @@ import {
 import { Eye, Download, Plus } from "lucide-react";
 import { Pagination } from "@/components/pagination";
 import { StatusBadge } from "@/components/status-badge";
-import { DatePicker } from "@/components/date-picker";
+// import { DatePicker } from "@/components/date-picker";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-// Dados simulados para a tabela
-const invoices = [
-  {
-    id: "#INV-001",
-    date: "30/03/2025",
-    description: "Compra Online #123",
-    value: "R$ 1.500,00",
-    status: "aprovado",
-  },
-  {
-    id: "#INV-002",
-    date: "29/03/2025",
-    description: "Serviço Premium",
-    value: "R$ 15.000,00",
-    status: "pendente",
-  },
-  {
-    id: "#INV-003",
-    date: "28/03/2025",
-    description: "Assinatura Mensal",
-    value: "R$ 99,90",
-    status: "rejeitado",
-  },
-];
+export const getInvoices = async () => {
+  const cookiesStore = await cookies();
+  const apiKey = cookiesStore.get("apiKey")?.value.toString() || "";
 
-export default function InvoiceListPage() {
+  const response = await fetch("http://localhost:8080/invoice", {
+    headers: {
+      "X-API-KEY": apiKey,
+    },
+  });
+
+  return response.json();
+};
+
+interface IInvoice {
+  id: string;
+  account_id: string;
+  amount: number;
+  status: string;
+  description: string;
+  card_last_digits: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export default async function InvoiceListPage() {
+  const invoices: IInvoice[] = await getInvoices();
+  console.log(invoices);
+
   return (
     <div className="container mx-auto py-8 px-4">
       <Card className="bg-slate-800/50 border-slate-700">
@@ -80,7 +83,7 @@ export default function InvoiceListPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-slate-700/30 rounded-lg">
+            {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-slate-700/30 rounded-lg">
               <div>
                 <label className="text-sm font-medium text-slate-300 mb-1 block">
                   Status
@@ -118,7 +121,7 @@ export default function InvoiceListPage() {
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
-            </div>
+            </div> */}
 
             <Table>
               <TableHeader className="bg-slate-700/30">
@@ -141,13 +144,13 @@ export default function InvoiceListPage() {
                       {invoice.id}
                     </TableCell>
                     <TableCell className="text-slate-300">
-                      {invoice.date}
+                      {new Date(invoice.created_at).toLocaleDateString()}
                     </TableCell>
                     <TableCell className="text-slate-300">
                       {invoice.description}
                     </TableCell>
                     <TableCell className="text-slate-300">
-                      {invoice.value}
+                      {invoice.amount.toFixed(2).replace(".", ",")}
                     </TableCell>
                     <TableCell>
                       <StatusBadge status={invoice.status} />
